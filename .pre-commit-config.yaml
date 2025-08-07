@@ -13,3 +13,4 @@ repos:
     rev: 7.3.0
     hooks:
       - id: flake8
+        args: [--remove-all-unused-imports, --in-place]
