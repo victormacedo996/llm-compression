@@ -6,6 +6,11 @@ from core.analysis.profiling.models.llm.parameter_info import ParameterInfo
 from core.analysis.profiling.models.llm.attention_layers_analyse_info import (
     AttentionLayerAnalysisInfo,
 )
+from core.analysis.profiling.models.llm.enums.precision_type import PrecisionType
+from core.analysis.profiling.models.llm.memory_estimate import (
+    MemoryEstimate,
+    MemoryEstimationInfo,
+)
 from core.analysis.profiling.models.llm.llm_info import LLMInfo
 
 
@@ -17,4 +22,7 @@ __all__ = [
     "ModelSummary",
     "ParameterInfo",
     "AttentionLayerAnalysisInfo",
+    "MemoryEstimate",
+    "MemoryEstimationInfo",
+    "PrecisionType",
 ]
