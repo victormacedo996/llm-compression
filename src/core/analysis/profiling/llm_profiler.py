@@ -15,13 +15,17 @@ from core.analysis.profiling.models.llm import (
     MemoryEstimate,
     MemoryEstimationInfo,
     PrecisionType,
+    ConnectionAnalysisInfo,
+    LayerConnectionInfo,
+    MeasureInferenceTime,
+    AnalyzeConnections,
+    EstimateMemory,
 )
 
 
 class LLMProfiler:
     """Enhanced LLM profiler with memory estimation capabilities."""
 
-    # Precision to bytes mapping
     PRECISION_BYTES = {
         PrecisionType.FP32: 4.0,
         PrecisionType.FP16: 2.0,
@@ -41,17 +45,15 @@ class LLMProfiler:
 
     def _detect_device(self) -> torch.device:
         """Detect the device where the model is located."""
-        # Check parameters first
+
         first_param = next(iter(self.model.parameters()), None)
         if first_param is not None:
             return first_param.device
 
-        # Fallback to buffers
         first_buffer = next(iter(self.model.buffers()), None)
         if first_buffer is not None:
             return first_buffer.device
 
-        # Default to CPU
         return torch.device("cpu")
 
     def count_parameters(self) -> ParameterInfo:
@@ -93,16 +95,14 @@ class LLMProfiler:
         include_activations: bool = True,
         include_training: bool = True,
         gradient_accumulation_steps: int = 1,
-        optimizer_type: str = "adamw",  # "adamw", "sgd", "adafactor"
+        optimizer_type: str = "adamw",
     ) -> MemoryEstimationInfo:
         if self.verbose:
             logger.info("💾 Estimating memory requirements...")
 
-        # Get parameter count
         param_info = self.count_parameters()
         total_params = param_info.total
 
-        # Analyze architecture for attention info
         arch_info = self.analyze_architecture()
         attention_info = self.analyze_attention_layers()
 
@@ -111,13 +111,10 @@ class LLMProfiler:
         for precision_type in PrecisionType:
             bytes_per_param = self.PRECISION_BYTES[precision_type]
 
-            # Model weights memory
             model_weights_mb = (total_params * bytes_per_param) / (1024**2)
 
-            # Base memory (just model weights)
             total_memory_mb = model_weights_mb
 
-            # KV Cache estimation (for inference)
             kv_cache_mb = None
             if (
                 include_kv_cache
@@ -129,7 +126,6 @@ class LLMProfiler:
                 )
                 total_memory_mb += kv_cache_mb
 
-            # Activation memory estimation
             activation_memory_mb = None
             if include_activations:
                 activation_memory_mb = self._estimate_activation_memory(
@@ -137,7 +133,6 @@ class LLMProfiler:
                 )
                 total_memory_mb += activation_memory_mb
 
-            # Training memory estimation
             training_memory_mb = None
             optimizer_memory_mb = None
             gradient_memory_mb = None
@@ -157,10 +152,7 @@ class LLMProfiler:
 
                 total_memory_mb += training_memory_mb
 
-            # Total memory with overhead
-            overhead_multiplier = (
-                1.3 if include_training else 1.2
-            )  # Higher overhead for training
+            overhead_multiplier = 1.3 if include_training else 1.2
             total_with_overhead_mb = total_memory_mb * overhead_multiplier
 
             logger.debug(training_estimates)
@@ -178,7 +170,6 @@ class LLMProfiler:
                 total_inference_memory_mb=(
                     round(total_with_overhead_mb, 2) if not include_training else None
                 ),
-                # Training-specific fields
                 gradient_memory_mb=(
                     round(gradient_memory_mb, 2) if gradient_memory_mb else None
                 ),
@@ -205,37 +196,33 @@ class LLMProfiler:
     ) -> dict:
         """Estimate memory requirements for training."""
 
-        # Gradient memory (same precision as model)
         gradient_memory_mb = (total_params * bytes_per_param) / (1024**2)
 
-        # Optimizer state memory
         optimizer_memory_mb = 0
 
         if optimizer_type.lower() == "adamw":
-            # AdamW stores: momentum (fp32) + variance (fp32) = 8 bytes per param
+
             optimizer_memory_mb = (total_params * 8) / (1024**2)
         elif optimizer_type.lower() == "sgd":
-            # SGD with momentum stores: momentum (same precision as model)
+
             optimizer_memory_mb = (total_params * bytes_per_param) / (1024**2)
         elif optimizer_type.lower() == "adafactor":
-            # Adafactor is more memory efficient, roughly 4 bytes per param
+
             optimizer_memory_mb = (total_params * 4) / (1024**2)
         else:
-            # Default to AdamW estimation
+
             optimizer_memory_mb = (total_params * 8) / (1024**2)
 
-        # Gradient accumulation factor
         if gradient_accumulation_steps > 1:
-            # Need to store accumulated gradients
+
             gradient_memory_mb *= gradient_accumulation_steps
 
-        # Mixed precision adjustments
         if (
             precision_type == PrecisionType.FP16
             or precision_type == PrecisionType.BFLOAT16
         ):
-            # Master weights in FP32 for mixed precision training
-            master_weights_mb = (total_params * 4) / (1024**2)  # FP32
+
+            master_weights_mb = (total_params * 4) / (1024**2)
             optimizer_memory_mb += master_weights_mb
 
         total_training_memory_mb = gradient_memory_mb + optimizer_memory_mb
@@ -257,19 +244,14 @@ class LLMProfiler:
         total_kv_memory = 0
 
         for layer in attention_info.attention_layers:
-            # Try to extract dimensions from layer info
-            num_heads = (
-                layer.get("num_attention_heads")
-                or layer.get("num_heads")
-                or 12  # default fallback
-            )
+
+            num_heads = layer.get("num_attention_heads") or layer.get("num_heads") or 12
 
             head_dim = layer.get("head_dim")
             if not head_dim:
-                embed_dim = layer.get("embed_dim", 768)  # default fallback
+                embed_dim = layer.get("embed_dim", 768)
                 head_dim = embed_dim // num_heads
 
-            # KV cache: 2 (K and V) * batch_size * num_heads * sequence_length * head_dim
             layer_kv_memory = (
                 2
                 * batch_size
@@ -280,7 +262,7 @@ class LLMProfiler:
             )
             total_kv_memory += layer_kv_memory
 
-        return total_kv_memory / (1024**2)  # Convert to MB
+        return total_kv_memory / (1024**2)
 
     def _estimate_activation_memory(
         self,
@@ -291,8 +273,7 @@ class LLMProfiler:
     ) -> float:
         """Estimate activation memory requirements (rough approximation)."""
 
-        # Find embedding dimension from layer details
-        embed_dim = 768  # default fallback
+        embed_dim = 768
         for layer in arch_info.layer_details:
             if layer.get("embedding_dim"):
                 embed_dim = layer["embedding_dim"]
@@ -300,7 +281,6 @@ class LLMProfiler:
             elif layer.get("output_size"):
                 embed_dim = max(embed_dim, layer["output_size"])
 
-        # Rough estimation: batch_size * sequence_length * embed_dim * num_layers * multiplier
         num_layers = len(
             [
                 layer
@@ -309,9 +289,8 @@ class LLMProfiler:
             ]
         )
         if num_layers == 0:
-            num_layers = 12  # default fallback
+            num_layers = 12
 
-        # Activation memory multiplier (accounts for intermediate representations)
         activation_multiplier = 4
 
         activation_memory_bytes = (
@@ -323,7 +302,7 @@ class LLMProfiler:
             * bytes_per_param
         )
 
-        return activation_memory_bytes / (1024**2)  # Convert to MB
+        return activation_memory_bytes / (1024**2)
 
     def analyze_architecture(self) -> ArchitectureInfo:
         """Analyze model architecture and extract layer information."""
@@ -332,7 +311,7 @@ class LLMProfiler:
         total_layers = 0
 
         for name, module in self.model.named_modules():
-            if not list(module.children()):  # leaf module
+            if not list(module.children()):
                 layer_type = type(module).__name__
                 layer_types[layer_type] += 1
 
@@ -346,7 +325,6 @@ class LLMProfiler:
                     "depth": depth,
                 }
 
-                # Extract layer-specific information
                 self._extract_layer_attributes(module, layer_info)
 
                 layer_details.append(layer_info)
@@ -363,17 +341,15 @@ class LLMProfiler:
 
     def _extract_layer_attributes(self, module: nn.Module, layer_info: dict) -> None:
         """Extract relevant attributes from a layer module."""
-        # Linear layer attributes
+
         if hasattr(module, "in_features") and hasattr(module, "out_features"):
             layer_info["input_size"] = getattr(module, "in_features", None)
             layer_info["output_size"] = getattr(module, "out_features", None)
 
-        # Embedding layer attributes
         if hasattr(module, "num_embeddings") and hasattr(module, "embedding_dim"):
             layer_info["vocab_size"] = getattr(module, "num_embeddings", None)
             layer_info["embedding_dim"] = getattr(module, "embedding_dim", None)
 
-        # Attention layer attributes
         for attr in ["num_heads", "num_attention_heads", "head_dim", "embed_dim"]:
             if hasattr(module, attr):
                 layer_info[attr] = getattr(module, attr, None)
@@ -388,13 +364,10 @@ class LLMProfiler:
         """Measure model inference time with proper warmup."""
         self.model.eval()
 
-        # Prepare input
         sample = self._prepare_inference_input(input_shape, input_sample)
 
-        # Warmup
         self._run_warmup(sample, warmup_runs)
 
-        # Measure timing
         times = self._measure_timing(sample, num_runs)
 
         return self._compute_timing_statistics(times)
@@ -466,7 +439,7 @@ class LLMProfiler:
 
             torch.cuda.synchronize()
             elapsed_ms = start_event.elapsed_time(end_event)
-            times.append(elapsed_ms / 1000.0)  # Convert to seconds
+            times.append(elapsed_ms / 1000.0)
 
         return times
 
@@ -527,11 +500,10 @@ class LLMProfiler:
 
     def _looks_like_attention(self, module: nn.Module) -> bool:
         """Check if a module looks like an attention layer."""
-        # Check if it's a known attention type
+
         if isinstance(module, torch.nn.MultiheadAttention):
             return True
 
-        # Check for attention-related attributes
         attention_attrs = [
             "num_attention_heads",
             "num_heads",
@@ -541,7 +513,6 @@ class LLMProfiler:
         if any(hasattr(module, attr) for attr in attention_attrs):
             return True
 
-        # Check class name
         class_name = type(module).__name__.lower()
         attention_keywords = [
             "attention",
@@ -558,7 +529,7 @@ class LLMProfiler:
         leaf_candidates = []
 
         for name in candidate_names:
-            # Check if this candidate is a parent of any other candidate
+
             is_parent = any(
                 (other != name) and other.startswith(name + ".")
                 for other in candidate_names
@@ -578,7 +549,6 @@ class LLMProfiler:
             module = candidates[name]
             info = {"name": name, "type": type(module).__name__}
 
-            # Extract attention-specific attributes
             attention_attrs = [
                 "num_attention_heads",
                 "num_heads",
@@ -604,35 +574,15 @@ class LLMProfiler:
 
     def profile_complete(
         self,
-        input_shape: Optional[Tuple[int, ...]] = None,
-        input_sample: Optional[Callable[[], Any]] = None,
-        measure_inference: bool = False,
-        estimate_memory: bool = True,
-        sequence_length: int = 2048,
-        batch_size: int = 1,
-        num_runs: int = 100,
-        warmup_runs: int = 10,
+        measure_inference: Optional[MeasureInferenceTime] = None,
+        analyze_connections: Optional[AnalyzeConnections] = None,
+        estimate_memory: Optional[EstimateMemory] = None,
     ) -> LLMInfo:
         """
-        Perform complete model profiling.
-
-        Args:
-            input_shape: Input shape for inference timing
-            input_sample: Custom input sample function
-            measure_inference: Whether to measure inference time
-            estimate_memory: Whether to estimate memory requirements
-            sequence_length: Sequence length for memory estimation
-            batch_size: Batch size for memory estimation
-            num_runs: Number of timing runs
-            warmup_runs: Number of warmup runs
-
-        Returns:
-            Complete LLM profiling information
-        """
+        Perform complete model profiling."""
         if self.verbose:
             logger.info(f"🔍 Profiling {self.model_name}...")
 
-        # Basic profiling
         model_summary = self.get_model_summary()
 
         if self.verbose:
@@ -647,24 +597,30 @@ class LLMProfiler:
             logger.info("🎯 Analyzing attention layers...")
         attention_layer_info = self.analyze_attention_layers()
 
-        # Optional inference timing
+        if analyze_connections:
+            connection_info = self.analyze_connections(
+                input_shape=analyze_connections.input_shape,
+                input_sample=analyze_connections.sample_input,
+            )
+
+            architecture_info.connections = connection_info
+
         inference_time_info = None
         if measure_inference:
             if self.verbose:
                 logger.info("⏱️  Measuring inference time...")
             inference_time_info = self.measure_inference_time(
-                input_shape=input_shape,
-                input_sample=input_sample,
-                num_runs=num_runs,
-                warmup_runs=warmup_runs,
+                input_shape=measure_inference.input_shape,
+                input_sample=measure_inference.input_sample,
+                num_runs=measure_inference.num_runs,
+                warmup_runs=measure_inference.warmup_runs,
             )
 
-        # Optional memory estimation
         memory_info = None
         if estimate_memory:
             memory_info = self.estimate_memory_requirements(
-                sequence_length=sequence_length,
-                batch_size=batch_size,
+                sequence_length=estimate_memory.sequence_length,
+                batch_size=estimate_memory.batch_size,
             )
 
         llm_info = LLMInfo(
@@ -673,7 +629,7 @@ class LLMProfiler:
             inference_time=inference_time_info,
             parameters=parameters_info,
             summary=model_summary,
-            memory_estimation=memory_info,  # Add this to your LLMInfo dataclass
+            memory_estimation=memory_info,
         )
 
         self.profile_data = llm_info
@@ -684,3 +640,306 @@ class LLMProfiler:
 
     def print_summary(self):
         print(self.profile_data.model_dump_json(indent=4))
+
+    def analyze_connections(
+        self,
+        sample_input: Optional[Any] = None,
+        input_shape: Optional[Tuple[int, ...]] = None,
+        input_sample: Optional[Callable[[], Any]] = None,
+    ) -> ConnectionAnalysisInfo:
+        """Analyze neural connections between layers."""
+        if self.verbose:
+            logger.info("🔗 Analyzing layer connections...")
+
+        if sample_input is None:
+            sample_input = self._prepare_inference_input(input_shape, input_sample)
+
+        connections = self._analyze_connections_fx(sample_input)
+
+        if connections is None:
+
+            if self.verbose:
+                logger.warning("torch.fx failed, falling back to hooks method...")
+            connections = self._analyze_connections_hooks(sample_input)
+
+        if connections is None:
+
+            if self.verbose:
+                logger.warning(
+                    "All connection analysis methods failed, using basic analysis..."
+                )
+            connections = self._analyze_connections_basic()
+
+        return connections
+
+    def _analyze_connections_fx(
+        self, sample_input: Any
+    ) -> Optional[ConnectionAnalysisInfo]:
+        """Analyze connections using torch.fx symbolic tracing."""
+        try:
+            import torch.fx
+
+            traced = torch.fx.symbolic_trace(self.model)
+
+            connection_graph = {}
+            node_outputs = {}
+
+            for node in traced.graph.nodes:
+                if node.op == "call_module":
+                    module = dict(traced.named_modules())[node.target]
+
+                    layer_info = LayerConnectionInfo(
+                        name=node.target,
+                        type=type(module).__name__,
+                        parameters=sum(p.numel() for p in module.parameters()),
+                        depth=node.target.count(".") if node.target else 0,
+                        input_layers=[],
+                        output_layers=[],
+                    )
+
+                    self._extract_layer_attributes(module, layer_info.__dict__)
+
+                    connection_graph[node.target] = layer_info
+                    node_outputs[node] = node.target
+
+            for node in traced.graph.nodes:
+                if node.op == "call_module" and node.target in connection_graph:
+                    current_layer = connection_graph[node.target]
+
+                    for arg in node.args:
+                        if hasattr(arg, "target") and arg.target in connection_graph:
+                            input_layer_name = arg.target
+                            current_layer.input_layers.append(input_layer_name)
+                            connection_graph[input_layer_name].output_layers.append(
+                                node.target
+                            )
+
+                    for user in node.users:
+                        if hasattr(user, "target") and user.target in connection_graph:
+                            output_layer_name = user.target
+                            if output_layer_name not in current_layer.output_layers:
+                                current_layer.output_layers.append(output_layer_name)
+
+            self._get_layer_shapes_fx(traced, sample_input, connection_graph)
+
+            analysis_info = self._analyze_connection_patterns(
+                connection_graph, "torch_fx"
+            )
+
+            return analysis_info
+
+        except Exception as e:
+            if self.verbose:
+                logger.debug(f"torch.fx analysis failed: {str(e)}")
+            return None
+
+    def _analyze_connections_hooks(
+        self, sample_input: Any
+    ) -> Optional[ConnectionAnalysisInfo]:
+        """Analyze connections using forward hooks."""
+        try:
+            connection_graph = {}
+            layer_shapes = {}
+            execution_order = []
+
+            for name, module in self.model.named_modules():
+                if len(list(module.children())) == 0:
+                    layer_info = LayerConnectionInfo(
+                        name=name if name else type(module).__name__,
+                        type=type(module).__name__,
+                        parameters=sum(p.numel() for p in module.parameters()),
+                        depth=name.count(".") if name else 0,
+                        input_layers=[],
+                        output_layers=[],
+                    )
+
+                    self._extract_layer_attributes(module, layer_info.__dict__)
+                    connection_graph[layer_info.name] = layer_info
+
+            hooks = []
+
+            def create_hook(layer_name):
+                def hook_fn(module, input, output):
+                    execution_order.append(layer_name)
+
+                    if isinstance(input, (tuple, list)) and len(input) > 0:
+                        if torch.is_tensor(input[0]):
+                            layer_shapes[layer_name] = {
+                                "input_shape": list(input[0].shape),
+                                "output_shape": (
+                                    list(output.shape)
+                                    if torch.is_tensor(output)
+                                    else None
+                                ),
+                            }
+
+                return hook_fn
+
+            for name, module in self.model.named_modules():
+                if len(list(module.children())) == 0:
+                    layer_name = name if name else type(module).__name__
+                    if layer_name in connection_graph:
+                        hook = module.register_forward_hook(create_hook(layer_name))
+                        hooks.append(hook)
+
+            with torch.no_grad():
+                _ = self._forward_pass(sample_input)
+
+            for hook in hooks:
+                hook.remove()
+
+            for i, layer_name in enumerate(execution_order):
+                if layer_name in connection_graph:
+                    connection_graph[layer_name].input_shape = layer_shapes.get(
+                        layer_name, {}
+                    ).get("input_shape")
+                    connection_graph[layer_name].output_shape = layer_shapes.get(
+                        layer_name, {}
+                    ).get("output_shape")
+
+                    if i > 0:
+                        prev_layer = execution_order[i - 1]
+                        if (
+                            prev_layer in connection_graph
+                            and prev_layer
+                            not in connection_graph[layer_name].input_layers
+                        ):
+                            connection_graph[layer_name].input_layers.append(prev_layer)
+                            connection_graph[prev_layer].output_layers.append(
+                                layer_name
+                            )
+
+            analysis_info = self._analyze_connection_patterns(connection_graph, "hooks")
+            return analysis_info
+
+        except Exception as e:
+            if self.verbose:
+                logger.debug(f"Hooks analysis failed: {str(e)}")
+            return None
+
+    def _analyze_connections_basic(self) -> ConnectionAnalysisInfo:
+        """Basic connection analysis based on naming patterns."""
+        connection_graph = {}
+
+        for name, module in self.model.named_modules():
+            if len(list(module.children())) == 0:
+                layer_info = LayerConnectionInfo(
+                    name=name if name else type(module).__name__,
+                    type=type(module).__name__,
+                    parameters=sum(p.numel() for p in module.parameters()),
+                    depth=name.count(".") if name else 0,
+                    input_layers=[],
+                    output_layers=[],
+                )
+
+                self._extract_layer_attributes(module, layer_info.__dict__)
+                connection_graph[layer_info.name] = layer_info
+
+        return self._analyze_connection_patterns(connection_graph, "basic")
+
+    def _get_layer_shapes_fx(
+        self,
+        traced_model,
+        sample_input: Any,
+        connection_graph: Dict[str, LayerConnectionInfo],
+    ):
+        """Get input/output shapes for layers using torch.fx."""
+        try:
+
+            shape_info = {}
+
+            def create_shape_hook(layer_name):
+                def hook_fn(module, input, output):
+                    input_shape = None
+                    output_shape = None
+
+                    if isinstance(input, (tuple, list)) and len(input) > 0:
+                        if torch.is_tensor(input[0]):
+                            input_shape = list(input[0].shape)
+
+                    if torch.is_tensor(output):
+                        output_shape = list(output.shape)
+                    elif isinstance(output, (tuple, list)) and len(output) > 0:
+                        if torch.is_tensor(output[0]):
+                            output_shape = list(output[0].shape)
+
+                    shape_info[layer_name] = {
+                        "input_shape": input_shape,
+                        "output_shape": output_shape,
+                    }
+
+                return hook_fn
+
+            hooks = []
+            for name, module in self.model.named_modules():
+                if name in connection_graph:
+                    hook = module.register_forward_hook(create_shape_hook(name))
+                    hooks.append(hook)
+
+            with torch.no_grad():
+                _ = self._forward_pass(sample_input)
+
+            for layer_name, shapes in shape_info.items():
+                if layer_name in connection_graph:
+                    connection_graph[layer_name].input_shape = shapes["input_shape"]
+                    connection_graph[layer_name].output_shape = shapes["output_shape"]
+
+            for hook in hooks:
+                hook.remove()
+
+        except Exception as e:
+            if self.verbose:
+                logger.debug(f"Shape extraction failed: {str(e)}")
+
+    def _analyze_connection_patterns(
+        self, connection_graph: Dict[str, LayerConnectionInfo], method: str
+    ) -> ConnectionAnalysisInfo:
+        """Analyze patterns in the connection graph."""
+        total_connections = sum(
+            len(layer.output_layers) for layer in connection_graph.values()
+        )
+
+        has_skip_connections = any(
+            len(layer.input_layers) > 1 for layer in connection_graph.values()
+        )
+
+        max_fan_in = max(
+            (len(layer.input_layers) for layer in connection_graph.values()), default=0
+        )
+        max_fan_out = max(
+            (len(layer.output_layers) for layer in connection_graph.values()), default=0
+        )
+
+        return ConnectionAnalysisInfo(
+            total_connections=total_connections,
+            connection_graph=connection_graph,
+            analysis_method=method,
+            has_skip_connections=has_skip_connections,
+            max_fan_in=max_fan_in,
+            max_fan_out=max_fan_out,
+        )
+
+    def get_connection_summary(self) -> Optional[Dict[str, Any]]:
+        """Get a summary of model connections."""
+        if not self.profile_data or not self.profile_data.architecture.connections:
+            return None
+
+        conn_info = self.profile_data.architecture.connections
+
+        return {
+            "total_connections": conn_info.total_connections,
+            "analysis_method": conn_info.analysis_method,
+            "has_skip_connections": conn_info.has_skip_connections,
+            "max_fan_in": conn_info.max_fan_in,
+            "max_fan_out": conn_info.max_fan_out,
+            "layers_with_multiple_inputs": [
+                name
+                for name, layer in conn_info.connection_graph.items()
+                if len(layer.input_layers) > 1
+            ],
+            "layers_with_multiple_outputs": [
+                name
+                for name, layer in conn_info.connection_graph.items()
+                if len(layer.output_layers) > 1
+            ],
+        }

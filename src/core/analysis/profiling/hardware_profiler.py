@@ -27,11 +27,7 @@ class HardwareProfiler:
         current_platform = platform.system()
         if current_platform == "Linux":
             return self.__get_linux_cpu_info()
-        # TODO: get cpu infos for other platforms
-        # if platform.system() == "Darwin":
-        #     return self._get_macos_cpu_info()
-        # if platform.system() == "Windows":
-        #     return self._get_windows_cpu_info()
+
         else:
             raise PlatformNotSupportedException(
                 f"{current_platform} is not supported yet"
