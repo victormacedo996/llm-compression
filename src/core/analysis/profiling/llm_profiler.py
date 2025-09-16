@@ -1,5 +1,5 @@
 import time
-from typing import Tuple, Any, Optional, Callable, Dict
+from typing import Tuple, Any, Optional, Callable, Dict, List
 from collections import defaultdict
 import numpy as np
 import torch
@@ -35,9 +35,14 @@ class LLMProfiler:
     }
 
     def __init__(
-        self, model: nn.Module, model_name: str = "Unknown Model", verbose: bool = True
+        self,
+        model: nn.Module,
+        tokenizer,
+        model_name: str = "Unknown Model",
+        verbose: bool = True,
     ):
         self.model = model
+        self.tokenizer = tokenizer
         self.model_name = model_name
         self.verbose = verbose
         self.device = self._detect_device()
@@ -93,7 +98,6 @@ class LLMProfiler:
         batch_size: int = 1,
         include_kv_cache: bool = True,
         include_activations: bool = True,
-        include_training: bool = True,
         gradient_accumulation_steps: int = 1,
         optimizer_type: str = "adamw",
     ) -> MemoryEstimationInfo:
@@ -111,77 +115,77 @@ class LLMProfiler:
         for precision_type in PrecisionType:
             bytes_per_param = self.PRECISION_BYTES[precision_type]
 
+            # Base model weights memory
             model_weights_mb = (total_params * bytes_per_param) / (1024**2)
 
-            total_memory_mb = model_weights_mb
-
+            # KV Cache memory (only for inference)
             kv_cache_mb = None
-            if (
-                include_kv_cache
-                and attention_info.num_attention_layers > 0
-                and not include_training
-            ):
+            if include_kv_cache and attention_info.num_attention_layers > 0:
                 kv_cache_mb = self._estimate_kv_cache_memory(
                     attention_info, sequence_length, batch_size, bytes_per_param
                 )
-                total_memory_mb += kv_cache_mb
 
+            # Activation memory (used in both training and inference)
             activation_memory_mb = None
             if include_activations:
                 activation_memory_mb = self._estimate_activation_memory(
                     arch_info, sequence_length, batch_size, bytes_per_param
                 )
-                total_memory_mb += activation_memory_mb
 
-            training_memory_mb = None
-            optimizer_memory_mb = None
-            gradient_memory_mb = None
+            # Training-specific memory components
+            training_estimates = self._estimate_training_memory(
+                total_params,
+                bytes_per_param,
+                optimizer_type,
+                gradient_accumulation_steps,
+                precision_type,
+            )
 
-            if include_training:
-                training_estimates = self._estimate_training_memory(
-                    total_params,
-                    bytes_per_param,
-                    optimizer_type,
-                    gradient_accumulation_steps,
-                    precision_type,
-                )
+            gradient_memory_mb = training_estimates["gradients"]
+            optimizer_memory_mb = training_estimates["optimizer"]
+            training_overhead_mb = training_estimates["total"]
 
-                gradient_memory_mb = training_estimates["gradients"]
-                optimizer_memory_mb = training_estimates["optimizer"]
-                training_memory_mb = training_estimates["total"]
+            # Calculate inference memory
+            inference_memory_mb = model_weights_mb
+            if kv_cache_mb:
+                inference_memory_mb += kv_cache_mb
+            if activation_memory_mb:
+                inference_memory_mb += activation_memory_mb
 
-                total_memory_mb += training_memory_mb
+            # Apply inference overhead (typically lower than training)
+            inference_overhead_multiplier = 1.2
+            total_inference_memory_mb = (
+                inference_memory_mb * inference_overhead_multiplier
+            )
 
-            overhead_multiplier = 1.3 if include_training else 1.2
-            total_with_overhead_mb = total_memory_mb * overhead_multiplier
+            # Calculate training memory
+            training_memory_mb = model_weights_mb
+            if activation_memory_mb:
+                training_memory_mb += activation_memory_mb
+            training_memory_mb += training_overhead_mb
 
-            logger.debug(training_estimates)
+            # Apply training overhead (higher due to additional complexity)
+            training_overhead_multiplier = 1.3
+            total_training_memory_mb = training_memory_mb * training_overhead_multiplier
 
             estimates[precision_type.value] = MemoryEstimate(
                 precision=precision_type.value,
                 bytes_per_parameter=bytes_per_param,
-                total_memory_mb=round(total_memory_mb, 2),
-                total_memory_gb=round(total_memory_mb / 1024, 3),
+                # Keep original total_memory_mb for backward compatibility (defaults to training)
+                total_memory_mb=round(total_training_memory_mb, 2),
+                total_memory_gb=round(total_training_memory_mb / 1024, 3),
                 model_weights_mb=round(model_weights_mb, 2),
                 kv_cache_mb=round(kv_cache_mb, 2) if kv_cache_mb else None,
                 activation_memory_mb=(
                     round(activation_memory_mb, 2) if activation_memory_mb else None
                 ),
-                total_inference_memory_mb=(
-                    round(total_with_overhead_mb, 2) if not include_training else None
-                ),
-                gradient_memory_mb=(
-                    round(gradient_memory_mb, 2) if gradient_memory_mb else None
-                ),
-                optimizer_memory_mb=(
-                    round(optimizer_memory_mb, 2) if optimizer_memory_mb else None
-                ),
-                training_memory_mb=(
-                    round(training_memory_mb, 2) if training_memory_mb else None
-                ),
-                total_training_memory_mb=(
-                    round(total_with_overhead_mb, 2) if include_training else None
-                ),
+                # Inference estimate
+                total_inference_memory_mb=round(total_inference_memory_mb, 2),
+                # total_inference_memory_gb=round(total_inference_memory_mb / 1024, 3),
+                # Training estimates
+                gradient_memory_mb=round(gradient_memory_mb, 2),
+                optimizer_memory_mb=round(optimizer_memory_mb, 2),
+                training_memory_mb=round(training_overhead_mb, 2),
             )
 
         return MemoryEstimationInfo(estimates=estimates, base_parameters=total_params)
@@ -356,21 +360,62 @@ class LLMProfiler:
 
     def measure_inference_time(
         self,
-        input_shape: Optional[Tuple[int, ...]] = None,
         input_sample: Optional[Callable[[], Any]] = None,
         num_runs: int = 100,
         warmup_runs: int = 10,
+        tokenizer_max_length: int = 512,
     ) -> InferenceTimeInfo:
         """Measure model inference time with proper warmup."""
         self.model.eval()
 
-        sample = self._prepare_inference_input(input_shape, input_sample)
+        for _ in range(warmup_runs):
+            input_prompt = input_sample()
+            tokenized_input = self.tokenizer(
+                input_prompt,
+                return_tensors="pt",
+                padding=True,
+                truncation=True,
+                max_length=tokenizer_max_length,
+            )
+            with torch.no_grad():
+                _ = self.model(**tokenized_input)
 
-        self._run_warmup(sample, warmup_runs)
+        execution_times: List[Dict[str, str | float | int]] = list()
 
-        times = self._measure_timing(sample, num_runs)
+        for i in range(num_runs):
+            start_time = time.perf_counter()
+            input_prompt = input_sample()
+            tokenized_input = self.tokenizer(
+                input_prompt,
+                return_tensors="pt",
+                padding=True,
+                truncation=True,
+                max_length=tokenizer_max_length,
+            )
+            with torch.no_grad():
+                _ = self.model(**tokenized_input)
 
-        return self._compute_timing_statistics(times)
+            end_time = time.perf_counter()
+            execution_times.append(
+                {
+                    "run_number": i,
+                    "prompt_used": input_prompt,
+                    "execution_time_s": (end_time - start_time) * 1000,
+                }
+            )
+
+        execution_times_array = np.array(
+            [run["execution_time_s"] for run in execution_times]
+        )
+
+        return InferenceTimeInfo(
+            max_time_ms=np.max(execution_times_array),
+            mean_time_ms=np.mean(execution_times_array),
+            median_time_ms=np.median(execution_times_array),
+            min_time_ms=np.min(execution_times_array),
+            runs=len(execution_times_array),
+            std_time_ms=np.std(execution_times_array),
+        )
 
     def _prepare_inference_input(
         self,
@@ -610,10 +655,10 @@ class LLMProfiler:
             if self.verbose:
                 logger.info("⏱️  Measuring inference time...")
             inference_time_info = self.measure_inference_time(
-                input_shape=measure_inference.input_shape,
                 input_sample=measure_inference.input_sample,
                 num_runs=measure_inference.num_runs,
                 warmup_runs=measure_inference.warmup_runs,
+                tokenizer_max_length=measure_inference.tokenizer_max_length,
             )
 
         memory_info = None
