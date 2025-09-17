@@ -1,14 +1,18 @@
 from transformers import AutoTokenizer, AutoModel
-from core.analysis.profiling.llm_profiler import LLMProfiler
+from core.analysis.profiling.profiler import Profiler
 import json
 from core.analysis.profiling.models.llm import (
     AnalyzeConnections,
     EstimateMemory,
     MeasureInferenceTime,
 )
+from core.analysis.profiling.models.profiler.llm_profile_options import (
+    LLMProfilerOptions,
+)
 import random
 import string
 from functools import partial
+from loguru import logger
 
 
 model_name = "bert-base-uncased"
@@ -19,7 +23,9 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 # Load the model
 model = AutoModel.from_pretrained(model_name)
 
-profiler = LLMProfiler(model, tokenizer, "My BERT Model", verbose=False)
+profiler = Profiler(
+    model=model, model_name=model_name, tokenizer=tokenizer, verbose=True
+)
 
 
 def generate_bert_prompt(prompt_type="classification", length="medium", seed=None):
@@ -180,15 +186,19 @@ def get_inference_prompt(prompt_type="classification", length="medium", seed=Non
 
 fn = partial(get_inference_prompt, prompt_type="mixed", length="long", seed=None)
 
-llm_info = profiler.profile_complete(
+llm_profiler_opts = LLMProfilerOptions(
     analyze_connections=AnalyzeConnections(
         input_shape=(1, 512),
     ),
     estimate_memory=EstimateMemory(batch_size=1, sequence_length=512),
-    measure_inference=MeasureInferenceTime(
+    measure_inference_time=MeasureInferenceTime(
         input_sample=fn, num_runs=20, warmup_runs=2, tokenizer_max_length=512
     ),
 )
 
+llm_info = profiler.profile_complete(model_profiler_options=llm_profiler_opts)
+
+logger.debug(llm_info)
+
 with open("test2.json", "w") as file:
-    json.dump(llm_info.model_dump(), file, indent=4)
+    json.dump(llm_info.model_dump(), file, indent=4, default=str)

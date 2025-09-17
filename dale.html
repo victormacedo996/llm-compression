@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="chart" style="width: 100%; height: 600px;"></div>
+
+    <script>
+        const test_data = {
+            "parameters": {
+                "total": 109482240,
+                "trainable": 109482240,
+                "non_trainable": 0,
+                "total_millions": 109.48,
+                "total_billions": 0.109,
+                "by_dtype_counts": {
+                    "torch.float32": 109482240
+                },
+                "by_dtype_bytes": {
+                    "torch.float32": 437928960
+                }
+            },
+            "architecture": {
+                "total_layers": 151,
+                "layer_types_count": {
+                    "Embedding": 3,
+                    "LayerNorm": 25,
+                    "Dropout": 37,
+                    "Linear": 73,
+                    "GELUActivation": 12,
+                    "Tanh": 1
+                },
+                "layer_details": [
+                    {
+                        "name": "embeddings.word_embeddings",
+                        "type": "Embedding",
+                        "parameters": 23440896,
+                        "depth": 1,
+                        "vocab_size": 30522,
+                        "embedding_dim": 768
+                    },
+                    {
+                        "name": "embeddings.position_embeddings",
+                        "type": "Embedding",
+                        "parameters": 393216,
+                        "depth": 1,
+                        "vocab_size": 512,
+                        "embedding_dim": 768
+                    },
+                    {
+                        "name": "embeddings.token_type_embeddings",
+                        "type": "Embedding",
+                        "parameters": 1536,
+                        "depth": 1,
+                        "vocab_size": 2,
+                        "embedding_dim": 768
+                    },
+                    {
+                        "name": "embeddings.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 1
+                    },
+                    {
+                        "name": "embeddings.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 1
+                    },
+                    {
+                        "name": "encoder.layer.0.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.0.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.0.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.0.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.0.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.0.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.0.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.0.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.0.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.0.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.0.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.0.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.1.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.1.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.1.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.1.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.1.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.1.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.1.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.1.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.1.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.1.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.1.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.1.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.2.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.2.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.2.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.2.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.2.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.2.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.2.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.2.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.2.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.2.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.2.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.2.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.3.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.3.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.3.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.3.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.3.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.3.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.3.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.3.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.3.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.3.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.3.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.3.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.4.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.4.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.4.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.4.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.4.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.4.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.4.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.4.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.4.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.4.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.4.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.4.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.5.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.5.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.5.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.5.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.5.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.5.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.5.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.5.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.5.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.5.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.5.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.5.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.6.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.6.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.6.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.6.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.6.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.6.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.6.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.6.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.6.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.6.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.6.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.6.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.7.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.7.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.7.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.7.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.7.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.7.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.7.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.7.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.7.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.7.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.7.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.7.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.8.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.8.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.8.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.8.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.8.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.8.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.8.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.8.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.8.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.8.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.8.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.8.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.9.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.9.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.9.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.9.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.9.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.9.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.9.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.9.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.9.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.9.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.9.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.9.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.10.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.10.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.10.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.10.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.10.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.10.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.10.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.10.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.10.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.10.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.10.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.10.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.11.attention.self.query",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.11.attention.self.key",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.11.attention.self.value",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.11.attention.self.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.11.attention.output.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 5,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.11.attention.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.11.attention.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 5
+                    },
+                    {
+                        "name": "encoder.layer.11.intermediate.dense",
+                        "type": "Linear",
+                        "parameters": 2362368,
+                        "depth": 4,
+                        "input_size": 768,
+                        "output_size": 3072
+                    },
+                    {
+                        "name": "encoder.layer.11.intermediate.intermediate_act_fn",
+                        "type": "GELUActivation",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.11.output.dense",
+                        "type": "Linear",
+                        "parameters": 2360064,
+                        "depth": 4,
+                        "input_size": 3072,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "encoder.layer.11.output.LayerNorm",
+                        "type": "LayerNorm",
+                        "parameters": 1536,
+                        "depth": 4
+                    },
+                    {
+                        "name": "encoder.layer.11.output.dropout",
+                        "type": "Dropout",
+                        "parameters": 0,
+                        "depth": 4
+                    },
+                    {
+                        "name": "pooler.dense",
+                        "type": "Linear",
+                        "parameters": 590592,
+                        "depth": 1,
+                        "input_size": 768,
+                        "output_size": 768
+                    },
+                    {
+                        "name": "pooler.activation",
+                        "type": "Tanh",
+                        "parameters": 0,
+                        "depth": 1
+                    }
+                ],
+                "max_depth": 5
+            },
+            "memory_usage": null,
+            "memory_estimation": {
+                "estimates": {
+                    "float32": {
+                        "precision": "float32",
+                        "bytes_per_parameter": 4.0,
+                        "total_memory_mb": 1958.57,
+                        "total_memory_gb": 1.913,
+                        "model_weights_mb": 417.64,
+                        "kv_cache_mb": null,
+                        "activation_memory_mb": 288.0,
+                        "total_inference_memory_mb": null,
+                        "gradient_memory_mb": 417.64,
+                        "optimizer_memory_mb": 835.28,
+                        "training_memory_mb": 1252.92,
+                        "total_training_memory_mb": 2546.14
+                    },
+                    "float16": {
+                        "precision": "float16",
+                        "bytes_per_parameter": 2.0,
+                        "total_memory_mb": 1814.57,
+                        "total_memory_gb": 1.772,
+                        "model_weights_mb": 208.82,
+                        "kv_cache_mb": null,
+                        "activation_memory_mb": 144.0,
+                        "total_inference_memory_mb": null,
+                        "gradient_memory_mb": 208.82,
+                        "optimizer_memory_mb": 1252.92,
+                        "training_memory_mb": 1461.75,
+                        "total_training_memory_mb": 2358.94
+                    },
+                    "bfloat16": {
+                        "precision": "bfloat16",
+                        "bytes_per_parameter": 2.0,
+                        "total_memory_mb": 1814.57,
+                        "total_memory_gb": 1.772,
+                        "model_weights_mb": 208.82,
+                        "kv_cache_mb": null,
+                        "activation_memory_mb": 144.0,
+                        "total_inference_memory_mb": null,
+                        "gradient_memory_mb": 208.82,
+                        "optimizer_memory_mb": 1252.92,
+                        "training_memory_mb": 1461.75,
+                        "total_training_memory_mb": 2358.94
+                    },
+                    "int8": {
+                        "precision": "int8",
+                        "bytes_per_parameter": 1.0,
+                        "total_memory_mb": 1116.1,
+                        "total_memory_gb": 1.09,
+                        "model_weights_mb": 104.41,
+                        "kv_cache_mb": null,
+                        "activation_memory_mb": 72.0,
+                        "total_inference_memory_mb": null,
+                        "gradient_memory_mb": 104.41,
+                        "optimizer_memory_mb": 835.28,
+                        "training_memory_mb": 939.69,
+                        "total_training_memory_mb": 1450.94
+                    },
+                    "int4": {
+                        "precision": "int4",
+                        "bytes_per_parameter": 0.5,
+                        "total_memory_mb": 975.69,
+                        "total_memory_gb": 0.953,
+                        "model_weights_mb": 52.21,
+                        "kv_cache_mb": null,
+                        "activation_memory_mb": 36.0,
+                        "total_inference_memory_mb": null,
+                        "gradient_memory_mb": 52.21,
+                        "optimizer_memory_mb": 835.28,
+                        "training_memory_mb": 887.49,
+                        "total_training_memory_mb": 1268.4
+                    }
+                },
+                "base_parameters": 109482240
+            },
+            "inference_time": null,
+            "summary": {
+                "model_name": "Unknown Model",
+                "device": "cpu",
+                "model_class": "BertModel",
+                "pytorch_version": "2.8.0+cu128"
+            },
+            "attention_layers": {
+                "num_attention_layers": 12,
+                "attention_layers": [
+                    {
+                        "name": "encoder.layer.0.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.1.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.10.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.11.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.2.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.3.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.4.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.5.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.6.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.7.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.8.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    },
+                    {
+                        "name": "encoder.layer.9.attention.self",
+                        "type": "BertSdpaSelfAttention",
+                        "num_attention_heads": 12
+                    }
+                ]
+            }
+        }
+
+        const chartDom = document.getElementById('chart');
+        const myChart = echarts.init(chartDom);
+
+        const sankeyOption = {
+            title: {
+                text: 'LLM Architecture Flow',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series: [
+                {
+                type: 'sankey',
+                data: test_data.architecture.map((value) => {return {name: value.name}}),
+
+                links: [
+                    { source: 'Input', target: 'Embeddings (23.8M)', value: 23.8 },
+                    { source: 'Embeddings (23.8M)', target: 'Encoder Layers (84.9M)', value: 23.8 },
+                    { source: 'Encoder Layers (84.9M)', target: 'Attention (33.6M)', value: 33.6 },
+                    { source: 'Encoder Layers (84.9M)', target: 'Feed Forward (51.3M)', value: 51.3 },
+                    { source: 'Attention (33.6M)', target: 'Pooler (0.6M)', value: 33.6 },
+                    { source: 'Feed Forward (51.3M)', target: 'Pooler (0.6M)', value: 51.3 },
+                    { source: 'Pooler (0.6M)', target: 'Output', value: 0.6 }
+                ],
+                emphasis: {
+                    focus: 'adjacency'
+                },
+                lineStyle: {
+                    curveness: 0.5
+                }
+                }
+            ]
+        };
+
+        // Use any of the options above
+        myChart.setOption(sankeyOption); // or barOption, treeOption, etc.
+
+        // Make chart responsive
+        window.addEventListener('resize', function() {
+            myChart.resize();
+        });
+
+
+    </script>
+</body>
+
+</html>
