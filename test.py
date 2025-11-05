@@ -6,6 +6,7 @@ from typing import Dict, List, Tuple
 from peft import LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
 from transformers import TrainingArguments, Trainer
 from datasets import load_dataset
+from bitsandbytes.nn import Linear4bit, Linear8bitLt
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -91,120 +92,152 @@ class PruningPipeline:
         self.device = next(model.parameters()).device
 
     def get_prunable_layers(self) -> List[Tuple[str, nn.Module]]:
-        """Get prunable layers, excluding BitsAndBytes quantized layers"""
+        """Get prunable layers, including BitsAndBytes quantized layers"""
         prunable_layers = []
 
         for name, module in self.model.named_modules():
-            if "quantized" in module.__class__.__name__.lower():
-                logger.info(
-                    f"Skipping quantized layer: {name} ({module.__class__.__name__})"
-                )
-                continue
-
-            if isinstance(module, (nn.Linear, nn.Conv2d)):
+            if isinstance(module, (nn.Linear, nn.Conv2d, Linear4bit, Linear8bitLt)):
                 prunable_layers.append((name, module))
 
         return prunable_layers
 
+    def _get_weight_for_pruning(self, module: nn.Module) -> torch.Tensor:
+        """Extract weight tensor from both regular and quantized layers"""
+        if isinstance(module, (Linear4bit, Linear8bitLt)):
+            # For BitsAndBytes quantized layers, dequantize to get original values
+            if hasattr(module, "weight"):
+                # Dequantize: weight is stored as (data, scale)
+                weight = module.weight.data
+                if weight.dtype == torch.uint8:
+                    # Dequantize using scale factor
+                    if hasattr(module.weight, "quant_state"):
+                        return module.weight.dequantize()
+                    # Fallback: use absolute values of quantized data
+                    return weight.float()
+                return weight
+        elif isinstance(module, nn.Linear):
+            return module.weight.data
+        elif isinstance(module, nn.Conv2d):
+            return module.weight.data
+        return None
+
+    def _set_pruned_weight(
+        self, module: nn.Module, weight: torch.Tensor, mask: torch.Tensor
+    ):
+        """Set pruned weights back to the module"""
+        if isinstance(module, (Linear4bit, Linear8bitLt)):
+            # For quantized layers, requantize after pruning
+            with torch.no_grad():
+                pruned_weight = weight.clone()
+                pruned_weight[~mask] = 0
+
+                # Requantize: this will handle the quantization internally
+                if hasattr(module, "weight") and hasattr(module.weight, "quant_state"):
+                    # Use BitsAndBytes' requantization
+                    module.weight.data = pruned_weight
+        else:
+            with torch.no_grad():
+                module.weight.data[~mask] = 0
+
     def structured_pruning_ffn(self):
-        """Prune entire neurons from FFN layers"""
+        """Prune entire neurons from FFN layers (including quantized)"""
         logger.info("Starting structured pruning on FFN layers...")
 
         pruned_count = 0
         total_params = 0
-        layers_skipped = 0
+        layers_pruned = 0
 
         for name, module in self.model.named_modules():
             if "mlp" in name.lower() or "feed_forward" in name.lower():
-                if isinstance(module, nn.Linear):
-                    if hasattr(module, "weight") and hasattr(module.weight, "data"):
-                        try:
-                            weight_data = module.weight.data
+                if isinstance(module, (nn.Linear, Linear4bit, Linear8bitLt)):
+                    try:
+                        weight_data = self._get_weight_for_pruning(module)
 
-                            # Skip quantized layers
-                            if weight_data.dtype not in [
-                                torch.float32,
-                                torch.float16,
-                                torch.bfloat16,
-                            ]:
-                                logger.info(
-                                    f"Skipping quantized layer {name} (dtype: {weight_data.dtype})"
-                                )
-                                layers_skipped += 1
-                                continue
-
-                            total_params += weight_data.numel()
-
-                            importance = torch.norm(weight_data, p=2, dim=1)
-                            threshold = torch.quantile(importance, self.pruning_ratio)
-                            mask = importance > threshold
-
-                            with torch.no_grad():
-                                module.weight.data[~mask] = 0
-
-                            pruned_count += (~mask).sum().item()
-                            logger.info(
-                                f"Pruned {name}: {(~mask).sum().item()} neurons "
-                                f"out of {len(importance)}"
-                            )
-
-                        except Exception as e:
-                            logger.warning(f"Could not prune layer {name}: {e}")
-                            layers_skipped += 1
+                        if weight_data is None:
                             continue
+
+                        # Ensure weight is on CPU for computation if needed
+                        if weight_data.device.type == "cuda":
+                            weight_data = weight_data.cpu()
+
+                        total_params += weight_data.numel()
+
+                        # Calculate importance using L2 norm
+                        importance = torch.norm(weight_data.float(), p=2, dim=1)
+                        threshold = torch.quantile(importance, self.pruning_ratio)
+                        mask = importance > threshold
+
+                        # Apply pruning
+                        self._set_pruned_weight(module, weight_data, mask)
+
+                        pruned_neurons = (~mask).sum().item()
+                        pruned_count += pruned_neurons
+                        layers_pruned += 1
+
+                        logger.info(
+                            f"Pruned {name}: {pruned_neurons} neurons "
+                            f"out of {len(importance)} "
+                            f"(quantized={isinstance(module, (Linear4bit, Linear8bitLt))})"
+                        )
+
+                    except Exception as e:
+                        logger.warning(f"Could not prune layer {name}: {e}")
+                        continue
 
         pruning_percentage = (
             (pruned_count / total_params) * 100 if total_params > 0 else 0
         )
         logger.info(
             f"Total structured pruning: {pruning_percentage:.2f}% of parameters "
-            f"({layers_skipped} quantized layers skipped)"
+            f"({layers_pruned} layers pruned)"
         )
 
         return self.model
 
     def unstructured_pruning_attention(self):
-        """Prune individual weights from attention layers"""
+        """Prune individual weights from attention layers (including quantized)"""
         logger.info("Starting unstructured pruning on attention layers...")
 
         pruned_count = 0
         total_params = 0
-        layers_skipped = 0
+        layers_pruned = 0
 
         for name, module in self.model.named_modules():
             if "self_attn" in name.lower() or "attention" in name.lower():
-                if isinstance(module, nn.Linear):
+                if isinstance(module, (nn.Linear, Linear4bit, Linear8bitLt)):
                     try:
-                        weight_data = module.weight.data
+                        weight_data = self._get_weight_for_pruning(module)
 
-                        if weight_data.dtype not in [
-                            torch.float32,
-                            torch.float16,
-                            torch.bfloat16,
-                        ]:
-                            logger.info(
-                                f"Skipping quantized attention layer {name} "
-                                f"(dtype: {weight_data.dtype})"
-                            )
-                            layers_skipped += 1
+                        if weight_data is None:
                             continue
 
+                        # Ensure weight is on CPU for computation if needed
+                        if weight_data.device.type == "cuda":
+                            weight_data = weight_data.cpu()
+
                         total_params += weight_data.numel()
-                        importance = torch.abs(weight_data)
+
+                        # Calculate importance using absolute values
+                        importance = torch.abs(weight_data.float())
                         threshold = torch.quantile(
                             importance.flatten(), self.pruning_ratio
                         )
                         mask = importance > threshold
 
-                        with torch.no_grad():
-                            module.weight.data[~mask] = 0
+                        # Apply pruning
+                        self._set_pruned_weight(module, weight_data, mask)
 
-                        pruned_count += (~mask).sum().item()
-                        logger.info(f"Pruned {name}: {(~mask).sum().item()} weights")
+                        pruned_weights = (~mask).sum().item()
+                        pruned_count += pruned_weights
+                        layers_pruned += 1
+
+                        logger.info(
+                            f"Pruned {name}: {pruned_weights} weights "
+                            f"(quantized={isinstance(module, (Linear4bit, Linear8bitLt))})"
+                        )
 
                     except Exception as e:
                         logger.warning(f"Could not prune attention layer {name}: {e}")
-                        layers_skipped += 1
                         continue
 
         pruning_percentage = (
@@ -212,7 +245,7 @@ class PruningPipeline:
         )
         logger.info(
             f"Total unstructured pruning: {pruning_percentage:.2f}% of parameters "
-            f"({layers_skipped} quantized layers skipped)"
+            f"({layers_pruned} layers pruned)"
         )
 
         return self.model
@@ -220,7 +253,9 @@ class PruningPipeline:
     def combined_pruning(self):
         """Apply both structured and unstructured pruning"""
         logger.info("Applying combined pruning strategy...")
-        logger.info("Note: BitsAndBytes quantized layers will be skipped")
+        logger.info(
+            "Note: BitsAndBytes quantized layers will be pruned via dequantization"
+        )
 
         self.pruning_ratio = 0.3
         self.structured_pruning_ffn()
