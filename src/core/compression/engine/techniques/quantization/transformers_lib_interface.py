@@ -30,3 +30,7 @@ class ITransformersQuantization(BaseCompressionTechnique, ABC):
 
     def compress(self, *args, **kwargs):
         return self.quantize(*args, **kwargs)
+
+    @abstractmethod
+    def get_quantization_config(self, *args, **kwargs) -> Any:
+        raise NotImplementedError()
