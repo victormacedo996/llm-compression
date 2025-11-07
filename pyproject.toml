@@ -3,7 +3,7 @@ name = "llm-compression"
 version = "0.0.1"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "accelerate>=1.11.0",
     "autoawq>=0.2.9",
