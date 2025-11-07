@@ -247,8 +247,8 @@ compression_workflow = CompressionWorkflow(
 )
 model_profile = compression_workflow.profile_base_model(llm_profiler_opts)
 with open("./pre-compression.json", "w") as file:
-    json.dump(model_profile.model_dump_json(), file, indent=4)
+    json.dump(model_profile.model_dump(), file, indent=4)
 compression_workflow.compress_model()
 model_profile = compression_workflow.profile_compressed_model(llm_profiler_opts)
 with open("./post-compression.json", "w") as file:
-    json.dump(model_profile.model_dump_json(), file, indent=4)
+    json.dump(model_profile.model_dump(), file, indent=4)

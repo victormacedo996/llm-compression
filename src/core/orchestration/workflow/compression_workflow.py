@@ -34,7 +34,9 @@ class CompressionWorkflow:
     def profile_base_model(
         self, profile_options: LLMProfilerOptions, verbose: bool = True
     ):
-        model = AutoModelForCausalLM.from_pretrained(self.hf_model_id)
+        model = AutoModelForCausalLM.from_pretrained(
+            self.hf_model_id, device_map="auto", trust_remote_code=True
+        )
         tokenizer = AutoTokenizer.from_pretrained(self.hf_model_id)
         profiler = Profiler(model, tokenizer, self.hf_model_id, verbose=verbose)
         base_model_profile = profiler.profile_complete(

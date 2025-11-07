@@ -376,7 +376,8 @@ class LLMProfiler:
                 padding=True,
                 truncation=True,
                 max_length=tokenizer_max_length,
-            )
+            ).to(self.device)
+
             with torch.no_grad():
                 _ = self.model(**tokenized_input)
 
@@ -391,9 +392,10 @@ class LLMProfiler:
                 padding=True,
                 truncation=True,
                 max_length=tokenizer_max_length,
-            )
+            ).input_ids.to(self.device)
+
             with torch.no_grad():
-                _ = self.model(**tokenized_input)
+                _ = self.model(tokenized_input)
 
             end_time = time.perf_counter()
             execution_times.append(
