@@ -1,29 +1,29 @@
 {
     "hardware_profile": {
         "cpu": {
-            "name": "AMD Ryzen 7 5700G with Radeon Graphics",
+            "name": "Intel(R) Xeon(R) CPU @ 2.20GHz",
             "architecture": "x86_64",
-            "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.35",
-            "max_freq": 4673.0,
-            "physical_cores": 8,
-            "total_cores": 16
+            "platform": "Linux-6.6.105+-x86_64-with-glibc2.35",
+            "max_freq": 0.0,
+            "physical_cores": 1,
+            "total_cores": 2
         },
         "ram": {
-            "total_memory_gb": 13.54,
-            "available_memory_gb": 7.9,
-            "free_memory_gb": 3.14,
-            "swap_total_gb": 2.0,
-            "swap_free_gb": 0.88
+            "total_memory_gb": 12.67,
+            "available_memory_gb": 8.16,
+            "free_memory_gb": 0.25,
+            "swap_total_gb": 0.0,
+            "swap_free_gb": 0.0
         },
         "gpu": {
-            "cuda_available": false,
-            "cuda_version": null,
-            "cudnn_version": null,
-            "device_count": 0,
-            "current_device": null,
+            "cuda_available": true,
+            "cuda_version": "12.6",
+            "cudnn_version": "91002",
+            "device_count": 1,
+            "current_device": 0,
             "gpus": []
         },
-        "timestamp": "2025-11-12T22:13:34.714964"
+        "timestamp": "2025-11-07T01:04:42.735262"
     },
     "llm_profile": {
         "parameters": {
@@ -45,7 +45,7 @@
                 "Embedding": 1,
                 "Linear": 197,
                 "Qwen3RMSNorm": 113,
-                "SiLU": 28,
+                "SiLUActivation": 28,
                 "Qwen3RotaryEmbedding": 1
             },
             "layer_details": [
@@ -127,7 +127,7 @@
                 },
                 {
                     "name": "model.layers.0.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -213,7 +213,7 @@
                 },
                 {
                     "name": "model.layers.1.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -299,7 +299,7 @@
                 },
                 {
                     "name": "model.layers.2.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -385,7 +385,7 @@
                 },
                 {
                     "name": "model.layers.3.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -471,7 +471,7 @@
                 },
                 {
                     "name": "model.layers.4.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -557,7 +557,7 @@
                 },
                 {
                     "name": "model.layers.5.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -643,7 +643,7 @@
                 },
                 {
                     "name": "model.layers.6.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -729,7 +729,7 @@
                 },
                 {
                     "name": "model.layers.7.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -815,7 +815,7 @@
                 },
                 {
                     "name": "model.layers.8.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -901,7 +901,7 @@
                 },
                 {
                     "name": "model.layers.9.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -987,7 +987,7 @@
                 },
                 {
                     "name": "model.layers.10.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1073,7 +1073,7 @@
                 },
                 {
                     "name": "model.layers.11.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1159,7 +1159,7 @@
                 },
                 {
                     "name": "model.layers.12.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1245,7 +1245,7 @@
                 },
                 {
                     "name": "model.layers.13.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1331,7 +1331,7 @@
                 },
                 {
                     "name": "model.layers.14.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1417,7 +1417,7 @@
                 },
                 {
                     "name": "model.layers.15.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1503,7 +1503,7 @@
                 },
                 {
                     "name": "model.layers.16.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1589,7 +1589,7 @@
                 },
                 {
                     "name": "model.layers.17.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1675,7 +1675,7 @@
                 },
                 {
                     "name": "model.layers.18.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1761,7 +1761,7 @@
                 },
                 {
                     "name": "model.layers.19.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1847,7 +1847,7 @@
                 },
                 {
                     "name": "model.layers.20.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -1933,7 +1933,7 @@
                 },
                 {
                     "name": "model.layers.21.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -2019,7 +2019,7 @@
                 },
                 {
                     "name": "model.layers.22.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -2105,7 +2105,7 @@
                 },
                 {
                     "name": "model.layers.23.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -2191,7 +2191,7 @@
                 },
                 {
                     "name": "model.layers.24.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -2277,7 +2277,7 @@
                 },
                 {
                     "name": "model.layers.25.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -2363,7 +2363,7 @@
                 },
                 {
                     "name": "model.layers.26.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -2449,7 +2449,7 @@
                 },
                 {
                     "name": "model.layers.27.mlp.act_fn",
-                    "type": "SiLU",
+                    "type": "SiLUActivation",
                     "parameters": 0,
                     "depth": 4
                 },
@@ -2753,7 +2753,7 @@
                     },
                     "model.layers.0.mlp.act_fn": {
                         "name": "model.layers.0.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -3069,7 +3069,7 @@
                     },
                     "model.layers.1.mlp.act_fn": {
                         "name": "model.layers.1.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -3385,7 +3385,7 @@
                     },
                     "model.layers.2.mlp.act_fn": {
                         "name": "model.layers.2.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -3701,7 +3701,7 @@
                     },
                     "model.layers.3.mlp.act_fn": {
                         "name": "model.layers.3.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -4017,7 +4017,7 @@
                     },
                     "model.layers.4.mlp.act_fn": {
                         "name": "model.layers.4.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -4333,7 +4333,7 @@
                     },
                     "model.layers.5.mlp.act_fn": {
                         "name": "model.layers.5.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -4649,7 +4649,7 @@
                     },
                     "model.layers.6.mlp.act_fn": {
                         "name": "model.layers.6.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -4965,7 +4965,7 @@
                     },
                     "model.layers.7.mlp.act_fn": {
                         "name": "model.layers.7.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -5281,7 +5281,7 @@
                     },
                     "model.layers.8.mlp.act_fn": {
                         "name": "model.layers.8.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -5597,7 +5597,7 @@
                     },
                     "model.layers.9.mlp.act_fn": {
                         "name": "model.layers.9.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -5913,7 +5913,7 @@
                     },
                     "model.layers.10.mlp.act_fn": {
                         "name": "model.layers.10.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -6229,7 +6229,7 @@
                     },
                     "model.layers.11.mlp.act_fn": {
                         "name": "model.layers.11.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -6545,7 +6545,7 @@
                     },
                     "model.layers.12.mlp.act_fn": {
                         "name": "model.layers.12.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -6861,7 +6861,7 @@
                     },
                     "model.layers.13.mlp.act_fn": {
                         "name": "model.layers.13.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -7177,7 +7177,7 @@
                     },
                     "model.layers.14.mlp.act_fn": {
                         "name": "model.layers.14.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -7493,7 +7493,7 @@
                     },
                     "model.layers.15.mlp.act_fn": {
                         "name": "model.layers.15.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -7809,7 +7809,7 @@
                     },
                     "model.layers.16.mlp.act_fn": {
                         "name": "model.layers.16.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -8125,7 +8125,7 @@
                     },
                     "model.layers.17.mlp.act_fn": {
                         "name": "model.layers.17.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -8441,7 +8441,7 @@
                     },
                     "model.layers.18.mlp.act_fn": {
                         "name": "model.layers.18.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -8757,7 +8757,7 @@
                     },
                     "model.layers.19.mlp.act_fn": {
                         "name": "model.layers.19.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -9073,7 +9073,7 @@
                     },
                     "model.layers.20.mlp.act_fn": {
                         "name": "model.layers.20.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -9389,7 +9389,7 @@
                     },
                     "model.layers.21.mlp.act_fn": {
                         "name": "model.layers.21.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -9705,7 +9705,7 @@
                     },
                     "model.layers.22.mlp.act_fn": {
                         "name": "model.layers.22.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -10021,7 +10021,7 @@
                     },
                     "model.layers.23.mlp.act_fn": {
                         "name": "model.layers.23.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -10337,7 +10337,7 @@
                     },
                     "model.layers.24.mlp.act_fn": {
                         "name": "model.layers.24.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -10653,7 +10653,7 @@
                     },
                     "model.layers.25.mlp.act_fn": {
                         "name": "model.layers.25.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -10969,7 +10969,7 @@
                     },
                     "model.layers.26.mlp.act_fn": {
                         "name": "model.layers.26.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -11285,7 +11285,7 @@
                     },
                     "model.layers.27.mlp.act_fn": {
                         "name": "model.layers.27.mlp.act_fn",
-                        "type": "SiLU",
+                        "type": "SiLUActivation",
                         "parameters": 0,
                         "depth": 4,
                         "input_layers": [
@@ -11517,18 +11517,18 @@
             "base_parameters": 596049920
         },
         "inference_time": {
-            "mean_time_ms": 336.4239845499469,
-            "std_time_ms": 30.036519636721323,
-            "min_time_ms": 297.7489009990677,
-            "max_time_ms": 394.4995960009692,
-            "median_time_ms": 331.29991100031475,
+            "mean_time_ms": 54.86511225000754,
+            "std_time_ms": 3.764278798756198,
+            "min_time_ms": 50.71701900004655,
+            "max_time_ms": 67.43565800002216,
+            "median_time_ms": 53.91721649999681,
             "runs": 20
         },
         "summary": {
             "model_name": "Qwen/Qwen3-0.6B",
-            "device": "cpu",
+            "device": "cuda:0",
             "model_class": "Qwen3ForCausalLM",
-            "pytorch_version": "2.8.0+cu128"
+            "pytorch_version": "2.8.0+cu126"
         },
         "attention_layers": {
             "num_attention_layers": 28,

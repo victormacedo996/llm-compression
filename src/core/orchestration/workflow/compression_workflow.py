@@ -142,15 +142,26 @@ class CompressionWorkflow:
             quantization_idx
         ]
 
-        # Load base model path, then apply quantization
-        model = AutoModelForCausalLM.from_pretrained(
-            str(checkpoint_dir / "model"),
-            quantization_config=quantization_technique.get_quantization_config(),
-            device_map="auto",
-            trust_remote_code=True,
-            attn_implementation="eager",
-        )
-        tokenizer = AutoTokenizer.from_pretrained(str(checkpoint_dir / "tokenizer"))
+        if quantization_technique.is_transformers:
+            # Load base model path, then apply quantization
+            model = AutoModelForCausalLM.from_pretrained(
+                str(checkpoint_dir / "model"),
+                quantization_config=quantization_technique.get_quantization_config(),
+                device_map="auto",
+                trust_remote_code=True,
+                attn_implementation="eager",
+            )
+            tokenizer = AutoTokenizer.from_pretrained(str(checkpoint_dir / "tokenizer"))
 
-        self._save_checkpoint(model, tokenizer, step_name="quantized_model")
-        return model, tokenizer
+            self._save_checkpoint(model, tokenizer, step_name="quantized_model")
+            return model, tokenizer
+
+        if quantization_technique.is_pytorch:
+            model = AutoModelForCausalLM.from_pretrained(
+                str(checkpoint_dir / "model"),
+                device_map="auto",
+                trust_remote_code=True,
+                attn_implementation="eager",
+            )
+            tokenizer = AutoTokenizer.from_pretrained(str(checkpoint_dir / "tokenizer"))
+            return quantization_technique.quantize(model=model, tokenizer=tokenizer)

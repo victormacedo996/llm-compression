@@ -10,10 +10,10 @@
         },
         "ram": {
             "total_memory_gb": 13.54,
-            "available_memory_gb": 5.7,
-            "free_memory_gb": 1.11,
+            "available_memory_gb": 4.97,
+            "free_memory_gb": 0.6,
             "swap_total_gb": 2.0,
-            "swap_free_gb": 0.97
+            "swap_free_gb": 0.79
         },
         "gpu": {
             "cuda_available": false,
@@ -23,7 +23,7 @@
             "current_device": null,
             "gpus": []
         },
-        "timestamp": "2025-11-12T22:14:26.818658"
+        "timestamp": "2025-11-13T21:06:02.354814"
     },
     "llm_profile": {
         "parameters": {
@@ -8759,15 +8759,15 @@
             "base_parameters": 155648000
         },
         "inference_time": {
-            "mean_time_ms": 50.58749385043484,
-            "std_time_ms": 3.7952613187142474,
-            "min_time_ms": 46.80614200151467,
-            "max_time_ms": 60.28934500136529,
-            "median_time_ms": 49.942572999498225,
+            "mean_time_ms": 47.06292874993778,
+            "std_time_ms": 3.140795468610583,
+            "min_time_ms": 43.46011300003738,
+            "max_time_ms": 54.33488499966188,
+            "median_time_ms": 46.52595449988439,
             "runs": 20
         },
         "summary": {
-            "model_name": "Qwen/Qwen3-0.6B-compressed",
+            "model_name": "qwen3",
             "device": "cpu",
             "model_class": "Qwen3ForCausalLM",
             "pytorch_version": "2.8.0+cu128"

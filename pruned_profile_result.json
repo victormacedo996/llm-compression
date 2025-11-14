@@ -10,10 +10,10 @@
         },
         "ram": {
             "total_memory_gb": 13.54,
-            "available_memory_gb": 7.9,
-            "free_memory_gb": 3.14,
+            "available_memory_gb": 4.1,
+            "free_memory_gb": 1.28,
             "swap_total_gb": 2.0,
-            "swap_free_gb": 0.88
+            "swap_free_gb": 0.94
         },
         "gpu": {
             "cuda_available": false,
@@ -23,20 +23,20 @@
             "current_device": null,
             "gpus": []
         },
-        "timestamp": "2025-11-12T22:13:34.714964"
+        "timestamp": "2025-11-13T22:50:29.047759"
     },
     "llm_profile": {
         "parameters": {
-            "total": 596049920,
-            "trainable": 596049920,
+            "total": 543236096,
+            "trainable": 543236096,
             "non_trainable": 0,
-            "total_millions": 596.05,
-            "total_billions": 0.596,
+            "total_millions": 543.24,
+            "total_billions": 0.543,
             "by_dtype_counts": {
-                "torch.float32": 596049920
+                "torch.float16": 543236096
             },
             "by_dtype_bytes": {
-                "torch.float32": 2384199680
+                "torch.float16": 1086472192
             }
         },
         "architecture": {
@@ -104,25 +104,25 @@
                 {
                     "name": "model.layers.0.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.0.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.0.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -190,25 +190,25 @@
                 {
                     "name": "model.layers.1.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.1.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.1.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -276,25 +276,25 @@
                 {
                     "name": "model.layers.2.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.2.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.2.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -362,25 +362,25 @@
                 {
                     "name": "model.layers.3.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.3.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.3.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -448,25 +448,25 @@
                 {
                     "name": "model.layers.4.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.4.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.4.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -534,25 +534,25 @@
                 {
                     "name": "model.layers.5.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.5.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.5.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -620,25 +620,25 @@
                 {
                     "name": "model.layers.6.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.6.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.6.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -706,25 +706,25 @@
                 {
                     "name": "model.layers.7.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.7.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.7.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -792,25 +792,25 @@
                 {
                     "name": "model.layers.8.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.8.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.8.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -878,25 +878,25 @@
                 {
                     "name": "model.layers.9.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.9.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.9.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -964,25 +964,25 @@
                 {
                     "name": "model.layers.10.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.10.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.10.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1050,25 +1050,25 @@
                 {
                     "name": "model.layers.11.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.11.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.11.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1136,25 +1136,25 @@
                 {
                     "name": "model.layers.12.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.12.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.12.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1222,25 +1222,25 @@
                 {
                     "name": "model.layers.13.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.13.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.13.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1308,25 +1308,25 @@
                 {
                     "name": "model.layers.14.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.14.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.14.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1394,25 +1394,25 @@
                 {
                     "name": "model.layers.15.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.15.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.15.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1480,25 +1480,25 @@
                 {
                     "name": "model.layers.16.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.16.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.16.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1566,25 +1566,25 @@
                 {
                     "name": "model.layers.17.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.17.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.17.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1652,25 +1652,25 @@
                 {
                     "name": "model.layers.18.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.18.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.18.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1738,25 +1738,25 @@
                 {
                     "name": "model.layers.19.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.19.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.19.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1824,25 +1824,25 @@
                 {
                     "name": "model.layers.20.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.20.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.20.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1910,25 +1910,25 @@
                 {
                     "name": "model.layers.21.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.21.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.21.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -1996,25 +1996,25 @@
                 {
                     "name": "model.layers.22.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.22.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.22.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -2082,25 +2082,25 @@
                 {
                     "name": "model.layers.23.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.23.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.23.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -2168,25 +2168,25 @@
                 {
                     "name": "model.layers.24.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.24.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.24.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -2254,25 +2254,25 @@
                 {
                     "name": "model.layers.25.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.25.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.25.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -2340,25 +2340,25 @@
                 {
                     "name": "model.layers.26.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.26.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.26.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -2426,25 +2426,25 @@
                 {
                     "name": "model.layers.27.mlp.gate_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.27.mlp.up_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
                     "input_size": 1024,
-                    "output_size": 3072
+                    "output_size": 2458
                 },
                 {
                     "name": "model.layers.27.mlp.down_proj",
                     "type": "Linear",
-                    "parameters": 3145728,
+                    "parameters": 2516992,
                     "depth": 4,
-                    "input_size": 3072,
+                    "input_size": 2458,
                     "output_size": 1024
                 },
                 {
@@ -2676,7 +2676,7 @@
                     "model.layers.0.mlp.gate_proj": {
                         "name": "model.layers.0.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.0.post_attention_layernorm"
@@ -2692,17 +2692,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.0.mlp.up_proj": {
                         "name": "model.layers.0.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.0.mlp.act_fn"
@@ -2718,17 +2718,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.0.mlp.down_proj": {
                         "name": "model.layers.0.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.0.mlp.up_proj"
@@ -2739,14 +2739,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -2765,12 +2765,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -2992,7 +2992,7 @@
                     "model.layers.1.mlp.gate_proj": {
                         "name": "model.layers.1.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.1.post_attention_layernorm"
@@ -3008,17 +3008,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.1.mlp.up_proj": {
                         "name": "model.layers.1.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.1.mlp.act_fn"
@@ -3034,17 +3034,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.1.mlp.down_proj": {
                         "name": "model.layers.1.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.1.mlp.up_proj"
@@ -3055,14 +3055,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -3081,12 +3081,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -3308,7 +3308,7 @@
                     "model.layers.2.mlp.gate_proj": {
                         "name": "model.layers.2.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.2.post_attention_layernorm"
@@ -3324,17 +3324,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.2.mlp.up_proj": {
                         "name": "model.layers.2.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.2.mlp.act_fn"
@@ -3350,17 +3350,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.2.mlp.down_proj": {
                         "name": "model.layers.2.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.2.mlp.up_proj"
@@ -3371,14 +3371,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -3397,12 +3397,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -3624,7 +3624,7 @@
                     "model.layers.3.mlp.gate_proj": {
                         "name": "model.layers.3.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.3.post_attention_layernorm"
@@ -3640,17 +3640,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.3.mlp.up_proj": {
                         "name": "model.layers.3.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.3.mlp.act_fn"
@@ -3666,17 +3666,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.3.mlp.down_proj": {
                         "name": "model.layers.3.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.3.mlp.up_proj"
@@ -3687,14 +3687,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -3713,12 +3713,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -3940,7 +3940,7 @@
                     "model.layers.4.mlp.gate_proj": {
                         "name": "model.layers.4.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.4.post_attention_layernorm"
@@ -3956,17 +3956,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.4.mlp.up_proj": {
                         "name": "model.layers.4.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.4.mlp.act_fn"
@@ -3982,17 +3982,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.4.mlp.down_proj": {
                         "name": "model.layers.4.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.4.mlp.up_proj"
@@ -4003,14 +4003,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -4029,12 +4029,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -4256,7 +4256,7 @@
                     "model.layers.5.mlp.gate_proj": {
                         "name": "model.layers.5.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.5.post_attention_layernorm"
@@ -4272,17 +4272,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.5.mlp.up_proj": {
                         "name": "model.layers.5.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.5.mlp.act_fn"
@@ -4298,17 +4298,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.5.mlp.down_proj": {
                         "name": "model.layers.5.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.5.mlp.up_proj"
@@ -4319,14 +4319,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -4345,12 +4345,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -4572,7 +4572,7 @@
                     "model.layers.6.mlp.gate_proj": {
                         "name": "model.layers.6.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.6.post_attention_layernorm"
@@ -4588,17 +4588,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.6.mlp.up_proj": {
                         "name": "model.layers.6.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.6.mlp.act_fn"
@@ -4614,17 +4614,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.6.mlp.down_proj": {
                         "name": "model.layers.6.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.6.mlp.up_proj"
@@ -4635,14 +4635,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -4661,12 +4661,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -4888,7 +4888,7 @@
                     "model.layers.7.mlp.gate_proj": {
                         "name": "model.layers.7.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.7.post_attention_layernorm"
@@ -4904,17 +4904,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.7.mlp.up_proj": {
                         "name": "model.layers.7.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.7.mlp.act_fn"
@@ -4930,17 +4930,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.7.mlp.down_proj": {
                         "name": "model.layers.7.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.7.mlp.up_proj"
@@ -4951,14 +4951,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -4977,12 +4977,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -5204,7 +5204,7 @@
                     "model.layers.8.mlp.gate_proj": {
                         "name": "model.layers.8.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.8.post_attention_layernorm"
@@ -5220,17 +5220,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.8.mlp.up_proj": {
                         "name": "model.layers.8.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.8.mlp.act_fn"
@@ -5246,17 +5246,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.8.mlp.down_proj": {
                         "name": "model.layers.8.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.8.mlp.up_proj"
@@ -5267,14 +5267,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -5293,12 +5293,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -5520,7 +5520,7 @@
                     "model.layers.9.mlp.gate_proj": {
                         "name": "model.layers.9.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.9.post_attention_layernorm"
@@ -5536,17 +5536,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.9.mlp.up_proj": {
                         "name": "model.layers.9.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.9.mlp.act_fn"
@@ -5562,17 +5562,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.9.mlp.down_proj": {
                         "name": "model.layers.9.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.9.mlp.up_proj"
@@ -5583,14 +5583,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -5609,12 +5609,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -5836,7 +5836,7 @@
                     "model.layers.10.mlp.gate_proj": {
                         "name": "model.layers.10.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.10.post_attention_layernorm"
@@ -5852,17 +5852,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.10.mlp.up_proj": {
                         "name": "model.layers.10.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.10.mlp.act_fn"
@@ -5878,17 +5878,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.10.mlp.down_proj": {
                         "name": "model.layers.10.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.10.mlp.up_proj"
@@ -5899,14 +5899,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -5925,12 +5925,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -6152,7 +6152,7 @@
                     "model.layers.11.mlp.gate_proj": {
                         "name": "model.layers.11.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.11.post_attention_layernorm"
@@ -6168,17 +6168,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.11.mlp.up_proj": {
                         "name": "model.layers.11.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.11.mlp.act_fn"
@@ -6194,17 +6194,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.11.mlp.down_proj": {
                         "name": "model.layers.11.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.11.mlp.up_proj"
@@ -6215,14 +6215,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -6241,12 +6241,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -6468,7 +6468,7 @@
                     "model.layers.12.mlp.gate_proj": {
                         "name": "model.layers.12.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.12.post_attention_layernorm"
@@ -6484,17 +6484,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.12.mlp.up_proj": {
                         "name": "model.layers.12.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.12.mlp.act_fn"
@@ -6510,17 +6510,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.12.mlp.down_proj": {
                         "name": "model.layers.12.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.12.mlp.up_proj"
@@ -6531,14 +6531,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -6557,12 +6557,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -6784,7 +6784,7 @@
                     "model.layers.13.mlp.gate_proj": {
                         "name": "model.layers.13.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.13.post_attention_layernorm"
@@ -6800,17 +6800,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.13.mlp.up_proj": {
                         "name": "model.layers.13.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.13.mlp.act_fn"
@@ -6826,17 +6826,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.13.mlp.down_proj": {
                         "name": "model.layers.13.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.13.mlp.up_proj"
@@ -6847,14 +6847,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -6873,12 +6873,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -7100,7 +7100,7 @@
                     "model.layers.14.mlp.gate_proj": {
                         "name": "model.layers.14.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.14.post_attention_layernorm"
@@ -7116,17 +7116,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.14.mlp.up_proj": {
                         "name": "model.layers.14.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.14.mlp.act_fn"
@@ -7142,17 +7142,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.14.mlp.down_proj": {
                         "name": "model.layers.14.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.14.mlp.up_proj"
@@ -7163,14 +7163,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -7189,12 +7189,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -7416,7 +7416,7 @@
                     "model.layers.15.mlp.gate_proj": {
                         "name": "model.layers.15.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.15.post_attention_layernorm"
@@ -7432,17 +7432,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.15.mlp.up_proj": {
                         "name": "model.layers.15.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.15.mlp.act_fn"
@@ -7458,17 +7458,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.15.mlp.down_proj": {
                         "name": "model.layers.15.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.15.mlp.up_proj"
@@ -7479,14 +7479,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -7505,12 +7505,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -7732,7 +7732,7 @@
                     "model.layers.16.mlp.gate_proj": {
                         "name": "model.layers.16.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.16.post_attention_layernorm"
@@ -7748,17 +7748,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.16.mlp.up_proj": {
                         "name": "model.layers.16.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.16.mlp.act_fn"
@@ -7774,17 +7774,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.16.mlp.down_proj": {
                         "name": "model.layers.16.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.16.mlp.up_proj"
@@ -7795,14 +7795,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -7821,12 +7821,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -8048,7 +8048,7 @@
                     "model.layers.17.mlp.gate_proj": {
                         "name": "model.layers.17.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.17.post_attention_layernorm"
@@ -8064,17 +8064,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.17.mlp.up_proj": {
                         "name": "model.layers.17.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.17.mlp.act_fn"
@@ -8090,17 +8090,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.17.mlp.down_proj": {
                         "name": "model.layers.17.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.17.mlp.up_proj"
@@ -8111,14 +8111,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -8137,12 +8137,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -8364,7 +8364,7 @@
                     "model.layers.18.mlp.gate_proj": {
                         "name": "model.layers.18.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.18.post_attention_layernorm"
@@ -8380,17 +8380,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.18.mlp.up_proj": {
                         "name": "model.layers.18.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.18.mlp.act_fn"
@@ -8406,17 +8406,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.18.mlp.down_proj": {
                         "name": "model.layers.18.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.18.mlp.up_proj"
@@ -8427,14 +8427,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -8453,12 +8453,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -8680,7 +8680,7 @@
                     "model.layers.19.mlp.gate_proj": {
                         "name": "model.layers.19.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.19.post_attention_layernorm"
@@ -8696,17 +8696,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.19.mlp.up_proj": {
                         "name": "model.layers.19.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.19.mlp.act_fn"
@@ -8722,17 +8722,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.19.mlp.down_proj": {
                         "name": "model.layers.19.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.19.mlp.up_proj"
@@ -8743,14 +8743,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -8769,12 +8769,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -8996,7 +8996,7 @@
                     "model.layers.20.mlp.gate_proj": {
                         "name": "model.layers.20.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.20.post_attention_layernorm"
@@ -9012,17 +9012,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.20.mlp.up_proj": {
                         "name": "model.layers.20.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.20.mlp.act_fn"
@@ -9038,17 +9038,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.20.mlp.down_proj": {
                         "name": "model.layers.20.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.20.mlp.up_proj"
@@ -9059,14 +9059,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -9085,12 +9085,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -9312,7 +9312,7 @@
                     "model.layers.21.mlp.gate_proj": {
                         "name": "model.layers.21.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.21.post_attention_layernorm"
@@ -9328,17 +9328,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.21.mlp.up_proj": {
                         "name": "model.layers.21.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.21.mlp.act_fn"
@@ -9354,17 +9354,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.21.mlp.down_proj": {
                         "name": "model.layers.21.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.21.mlp.up_proj"
@@ -9375,14 +9375,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -9401,12 +9401,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -9628,7 +9628,7 @@
                     "model.layers.22.mlp.gate_proj": {
                         "name": "model.layers.22.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.22.post_attention_layernorm"
@@ -9644,17 +9644,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.22.mlp.up_proj": {
                         "name": "model.layers.22.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.22.mlp.act_fn"
@@ -9670,17 +9670,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.22.mlp.down_proj": {
                         "name": "model.layers.22.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.22.mlp.up_proj"
@@ -9691,14 +9691,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -9717,12 +9717,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -9944,7 +9944,7 @@
                     "model.layers.23.mlp.gate_proj": {
                         "name": "model.layers.23.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.23.post_attention_layernorm"
@@ -9960,17 +9960,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.23.mlp.up_proj": {
                         "name": "model.layers.23.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.23.mlp.act_fn"
@@ -9986,17 +9986,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.23.mlp.down_proj": {
                         "name": "model.layers.23.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.23.mlp.up_proj"
@@ -10007,14 +10007,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -10033,12 +10033,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -10260,7 +10260,7 @@
                     "model.layers.24.mlp.gate_proj": {
                         "name": "model.layers.24.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.24.post_attention_layernorm"
@@ -10276,17 +10276,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.24.mlp.up_proj": {
                         "name": "model.layers.24.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.24.mlp.act_fn"
@@ -10302,17 +10302,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.24.mlp.down_proj": {
                         "name": "model.layers.24.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.24.mlp.up_proj"
@@ -10323,14 +10323,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -10349,12 +10349,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -10576,7 +10576,7 @@
                     "model.layers.25.mlp.gate_proj": {
                         "name": "model.layers.25.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.25.post_attention_layernorm"
@@ -10592,17 +10592,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.25.mlp.up_proj": {
                         "name": "model.layers.25.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.25.mlp.act_fn"
@@ -10618,17 +10618,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.25.mlp.down_proj": {
                         "name": "model.layers.25.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.25.mlp.up_proj"
@@ -10639,14 +10639,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -10665,12 +10665,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -10892,7 +10892,7 @@
                     "model.layers.26.mlp.gate_proj": {
                         "name": "model.layers.26.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.26.post_attention_layernorm"
@@ -10908,17 +10908,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.26.mlp.up_proj": {
                         "name": "model.layers.26.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.26.mlp.act_fn"
@@ -10934,17 +10934,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.26.mlp.down_proj": {
                         "name": "model.layers.26.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.26.mlp.up_proj"
@@ -10955,14 +10955,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -10981,12 +10981,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -11208,7 +11208,7 @@
                     "model.layers.27.mlp.gate_proj": {
                         "name": "model.layers.27.mlp.gate_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.27.post_attention_layernorm"
@@ -11224,17 +11224,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.27.mlp.up_proj": {
                         "name": "model.layers.27.mlp.up_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.27.mlp.act_fn"
@@ -11250,17 +11250,17 @@
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": 1024,
-                        "output_size": 3072,
+                        "output_size": 2458,
                         "vocab_size": null,
                         "embedding_dim": null
                     },
                     "model.layers.27.mlp.down_proj": {
                         "name": "model.layers.27.mlp.down_proj",
                         "type": "Linear",
-                        "parameters": 3145728,
+                        "parameters": 2516992,
                         "depth": 4,
                         "input_layers": [
                             "model.layers.27.mlp.up_proj"
@@ -11271,14 +11271,14 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
                             1024
                         ],
-                        "input_size": 3072,
+                        "input_size": 2458,
                         "output_size": 1024,
                         "vocab_size": null,
                         "embedding_dim": null
@@ -11297,12 +11297,12 @@
                         "input_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "output_shape": [
                             1,
                             2048,
-                            3072
+                            2458
                         ],
                         "input_size": null,
                         "output_size": null,
@@ -11446,86 +11446,86 @@
                 "float32": {
                     "precision": "float32",
                     "bytes_per_parameter": 4.0,
-                    "total_memory_mb": 11847.88,
-                    "total_memory_gb": 11.57,
-                    "model_weights_mb": 2273.75,
+                    "total_memory_mb": 10800.24,
+                    "total_memory_gb": 10.547,
+                    "model_weights_mb": 2072.28,
                     "kv_cache_mb": 32.81,
                     "activation_memory_mb": 18.75,
-                    "total_inference_memory_mb": 2790.38,
-                    "gradient_memory_mb": 2273.75,
-                    "optimizer_memory_mb": 4547.5,
-                    "training_memory_mb": 6821.25,
+                    "total_inference_memory_mb": 2548.61,
+                    "gradient_memory_mb": 2072.28,
+                    "optimizer_memory_mb": 4144.56,
+                    "training_memory_mb": 6216.84,
                     "total_training_memory_mb": null
                 },
                 "float16": {
                     "precision": "float16",
                     "bytes_per_parameter": 2.0,
-                    "total_memory_mb": 11835.69,
-                    "total_memory_gb": 11.558,
-                    "model_weights_mb": 1136.88,
+                    "total_memory_mb": 10788.05,
+                    "total_memory_gb": 10.535,
+                    "model_weights_mb": 1036.14,
                     "kv_cache_mb": 16.41,
                     "activation_memory_mb": 9.38,
-                    "total_inference_memory_mb": 1395.19,
-                    "gradient_memory_mb": 1136.88,
-                    "optimizer_memory_mb": 6821.25,
-                    "training_memory_mb": 7958.12,
+                    "total_inference_memory_mb": 1274.31,
+                    "gradient_memory_mb": 1036.14,
+                    "optimizer_memory_mb": 6216.84,
+                    "training_memory_mb": 7252.98,
                     "total_training_memory_mb": null
                 },
                 "bfloat16": {
                     "precision": "bfloat16",
                     "bytes_per_parameter": 2.0,
-                    "total_memory_mb": 11835.69,
-                    "total_memory_gb": 11.558,
-                    "model_weights_mb": 1136.88,
+                    "total_memory_mb": 10788.05,
+                    "total_memory_gb": 10.535,
+                    "model_weights_mb": 1036.14,
                     "kv_cache_mb": 16.41,
                     "activation_memory_mb": 9.38,
-                    "total_inference_memory_mb": 1395.19,
-                    "gradient_memory_mb": 1136.88,
-                    "optimizer_memory_mb": 6821.25,
-                    "training_memory_mb": 7958.12,
+                    "total_inference_memory_mb": 1274.31,
+                    "gradient_memory_mb": 1036.14,
+                    "optimizer_memory_mb": 6216.84,
+                    "training_memory_mb": 7252.98,
                     "total_training_memory_mb": null
                 },
                 "int8": {
                     "precision": "int8",
                     "bytes_per_parameter": 1.0,
-                    "total_memory_mb": 7395.78,
-                    "total_memory_gb": 7.222,
-                    "model_weights_mb": 568.44,
+                    "total_memory_mb": 6741.01,
+                    "total_memory_gb": 6.583,
+                    "model_weights_mb": 518.07,
                     "kv_cache_mb": 8.2,
                     "activation_memory_mb": 4.69,
-                    "total_inference_memory_mb": 697.59,
-                    "gradient_memory_mb": 568.44,
-                    "optimizer_memory_mb": 4547.5,
-                    "training_memory_mb": 5115.94,
+                    "total_inference_memory_mb": 637.15,
+                    "gradient_memory_mb": 518.07,
+                    "optimizer_memory_mb": 4144.56,
+                    "training_memory_mb": 4662.63,
                     "total_training_memory_mb": null
                 },
                 "int4": {
                     "precision": "int4",
                     "bytes_per_parameter": 0.5,
-                    "total_memory_mb": 6653.77,
-                    "total_memory_gb": 6.498,
-                    "model_weights_mb": 284.22,
+                    "total_memory_mb": 6064.47,
+                    "total_memory_gb": 5.922,
+                    "model_weights_mb": 259.04,
                     "kv_cache_mb": 4.1,
                     "activation_memory_mb": 2.34,
-                    "total_inference_memory_mb": 348.8,
-                    "gradient_memory_mb": 284.22,
-                    "optimizer_memory_mb": 4547.5,
-                    "training_memory_mb": 4831.72,
+                    "total_inference_memory_mb": 318.58,
+                    "gradient_memory_mb": 259.04,
+                    "optimizer_memory_mb": 4144.56,
+                    "training_memory_mb": 4403.6,
                     "total_training_memory_mb": null
                 }
             },
-            "base_parameters": 596049920
+            "base_parameters": 543236096
         },
         "inference_time": {
-            "mean_time_ms": 336.4239845499469,
-            "std_time_ms": 30.036519636721323,
-            "min_time_ms": 297.7489009990677,
-            "max_time_ms": 394.4995960009692,
-            "median_time_ms": 331.29991100031475,
+            "mean_time_ms": 116.39743520017873,
+            "std_time_ms": 36.35986986135992,
+            "min_time_ms": 70.01003599907563,
+            "max_time_ms": 184.92344200058142,
+            "median_time_ms": 113.15442050090496,
             "runs": 20
         },
         "summary": {
-            "model_name": "Qwen/Qwen3-0.6B",
+            "model_name": "qwen3-0.6b-pruned",
             "device": "cpu",
             "model_class": "Qwen3ForCausalLM",
             "pytorch_version": "2.8.0+cu128"

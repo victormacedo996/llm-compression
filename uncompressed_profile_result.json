@@ -10,10 +10,10 @@
         },
         "ram": {
             "total_memory_gb": 13.54,
-            "available_memory_gb": 7.9,
-            "free_memory_gb": 3.14,
+            "available_memory_gb": 4.29,
+            "free_memory_gb": 0.98,
             "swap_total_gb": 2.0,
-            "swap_free_gb": 0.88
+            "swap_free_gb": 0.98
         },
         "gpu": {
             "cuda_available": false,
@@ -23,7 +23,7 @@
             "current_device": null,
             "gpus": []
         },
-        "timestamp": "2025-11-12T22:13:34.714964"
+        "timestamp": "2025-11-13T22:49:49.379234"
     },
     "llm_profile": {
         "parameters": {
@@ -33,10 +33,10 @@
             "total_millions": 596.05,
             "total_billions": 0.596,
             "by_dtype_counts": {
-                "torch.float32": 596049920
+                "torch.float16": 596049920
             },
             "by_dtype_bytes": {
-                "torch.float32": 2384199680
+                "torch.float16": 1192099840
             }
         },
         "architecture": {
@@ -11517,15 +11517,15 @@
             "base_parameters": 596049920
         },
         "inference_time": {
-            "mean_time_ms": 336.4239845499469,
-            "std_time_ms": 30.036519636721323,
-            "min_time_ms": 297.7489009990677,
-            "max_time_ms": 394.4995960009692,
-            "median_time_ms": 331.29991100031475,
+            "mean_time_ms": 117.0400160999634,
+            "std_time_ms": 40.601816001757435,
+            "min_time_ms": 74.74653300050704,
+            "max_time_ms": 213.8415649988019,
+            "median_time_ms": 120.98237200007134,
             "runs": 20
         },
         "summary": {
-            "model_name": "Qwen/Qwen3-0.6B",
+            "model_name": "qwen3-0.6b-uncompressed",
             "device": "cpu",
             "model_class": "Qwen3ForCausalLM",
             "pytorch_version": "2.8.0+cu128"
