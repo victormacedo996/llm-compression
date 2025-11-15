@@ -10,10 +10,10 @@
         },
         "ram": {
             "total_memory_gb": 13.54,
-            "available_memory_gb": 4.63,
-            "free_memory_gb": 1.09,
+            "available_memory_gb": 4.52,
+            "free_memory_gb": 0.97,
             "swap_total_gb": 2.0,
-            "swap_free_gb": 1.41
+            "swap_free_gb": 0.95
         },
         "gpu": {
             "cuda_available": false,
@@ -23,7 +23,7 @@
             "current_device": null,
             "gpus": []
         },
-        "timestamp": "2025-11-14T21:13:37.727775"
+        "timestamp": "2025-11-14T22:02:38.879440"
     },
     "llm_profile": {
         "parameters": {
@@ -11517,11 +11517,11 @@
             "base_parameters": 543236096
         },
         "inference_time": {
-            "mean_time_ms": 114.98639650001223,
-            "std_time_ms": 39.28386685150366,
-            "min_time_ms": 72.2928810000667,
-            "max_time_ms": 203.59106099999735,
-            "median_time_ms": 112.70775250000042,
+            "mean_time_ms": 113.2887872000083,
+            "std_time_ms": 32.92467096685217,
+            "min_time_ms": 70.35505400017428,
+            "max_time_ms": 183.09664000025805,
+            "median_time_ms": 108.85066399987409,
             "runs": 20
         },
         "summary": {
